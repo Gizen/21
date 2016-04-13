@@ -37,7 +37,7 @@ namespace _21
 
         private void RandomNumber(int number)
         {
-            number = rnd.Next(1, 54);
+            number = rnd.Next(1, 53);
         }
     }
 }
