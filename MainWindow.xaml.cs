@@ -22,7 +22,6 @@ namespace _21
     {
         Random rnd = new Random();
         int dealerCard1;
-        int dealerCard2;
         int playerCard1;
         int playerCard2;
         public MainWindow()
