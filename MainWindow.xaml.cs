@@ -24,6 +24,7 @@ namespace _21
         int[] deck;
         int[] deckNumber;
         string[] deckNames;
+        int nextCard = 0;
 
         public MainWindow()
         {
