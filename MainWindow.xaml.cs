@@ -21,22 +21,38 @@ namespace _21
     public partial class MainWindow : Window
     {
         Random rnd = new Random();
-        int dealerCard1;
-        int playerCard1;
-        int playerCard2;
+        int[] deck;
+
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void Card()
+        private void MakeDeck()
         {
-
+            deck = new int[52];
+            for (int i = 0; i < 52; i++)
+            {
+                deck[i] = i + 1;
+            }
+        }
+        private void Shuffle(int number)
+        {
+            for (int i = 0; i < 1000000; i++)
+            {
+                int slot1 = rnd.Next(0, 52);
+                int slot2 = slot1 - 1;
+                if (slot2 == -1)
+                {
+                    slot2 = 51;
+                }
+                int number1 = deck[slot1];
+                int number2 = deck[slot2];
+                deck[slot1] = number2;
+                deck[slot2] = number1;
+            }
         }
 
-        private void RandomNumber(int number)
-        {
-            number = rnd.Next(1, 53);
-        }
+
     }
 }
