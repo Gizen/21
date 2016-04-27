@@ -172,32 +172,39 @@ namespace _21
             }
         }
 
-        public void HitClac()
+        public void HitClac(string text, int score)
         {
             int card = deck[nextCard];
             string name = deckNames[card];
             int numberScore = deckNumber[card];
 
-            playerText = textBlockPlayerHand.Text;
-            textBlockPlayerHand.Text = name + ", " + playerText;
+            text = textBlockPlayerHand.Text;
+            textBlockPlayerHand.Text = name + ", " + text;
 
-            playerScore += numberScore;
-            textBlockScore.Text = Convert.ToString(playerScore);
+            
+            score += numberScore;
+            textBlockScore.Text = Convert.ToString(score);
             nextCard++;
 
         }
 
+        public void StandClac()
+        {
+            buttonHit.IsEnabled = false;
+        }
+
         private void Hit_Click(object sender, RoutedEventArgs e)
         {
-            HitClac();
+            HitClac(playerText, playerScore);
 
         }
 
         private void buttonStart_Click(object sender, RoutedEventArgs e)
         {
+            buttonHit.IsEnabled = true;
             MakeDecks();
             Shuffle();
-
         }
+
     }
 }

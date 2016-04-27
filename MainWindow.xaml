@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <Button x:Name="Hit" Content="Hit" HorizontalAlignment="Left" Height="50" Margin="151,143,0,0" VerticalAlignment="Top" Width="50" Click="Hit_Click"/>
-        <Button x:Name="Stand" Content="Stand" HorizontalAlignment="Left" Height="50" Margin="247,143,0,0" VerticalAlignment="Top" Width="50"/>
+        <Button x:Name="buttonHit" Content="Hit" HorizontalAlignment="Left" Height="50" Margin="151,143,0,0" VerticalAlignment="Top" Width="50" Click="Hit_Click"/>
+        <Button x:Name="buttonStand" Content="Stand" HorizontalAlignment="Left" Height="50" Margin="247,143,0,0" VerticalAlignment="Top" Width="50"/>
         <Button x:Name="buttonStart" Content="Start" HorizontalAlignment="Left" Height="50" Margin="346,143,0,0" VerticalAlignment="Top" Width="50" Click="buttonStart_Click"/>
         <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="25" Margin="38,168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
         <TextBlock x:Name="textBlockScore" HorizontalAlignment="Left" Height="50" Margin="412,143,0,0" TextWrapping="Wrap" Text="You Have A Score Of:" VerticalAlignment="Top" Width="100"/>
