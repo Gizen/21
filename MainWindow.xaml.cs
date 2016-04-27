@@ -129,31 +129,31 @@ namespace _21
 
 
             deckNumber[36] = 1;
-            deckNames[24] = "Ace of Diamonds";
+            deckNames[36] = "Ace of Diamonds";
             deckNumber[37] = 2;
-            deckNames[25] = "Two of Diamonds";
+            deckNames[37] = "Two of Diamonds";
             deckNumber[38] = 3;
-            deckNames[26] = "Three of Diamonds";
+            deckNames[38] = "Three of Diamonds";
             deckNumber[39] = 4;
-            deckNames[27] = "Four of Diamonds";
+            deckNames[39] = "Four of Diamonds";
             deckNumber[40] = 5;
-            deckNames[28] = "Five of Diamonds";
+            deckNames[40] = "Five of Diamonds";
             deckNumber[41] = 6;
-            deckNames[29] = "Six of Diamonds";
+            deckNames[41] = "Six of Diamonds";
             deckNumber[42] = 7;
-            deckNames[30] = "Seven of Diamonds";
+            deckNames[42] = "Seven of Diamonds";
             deckNumber[43] = 8;
-            deckNames[31] = "Eight of Diamonds";
+            deckNames[43] = "Eight of Diamonds";
             deckNumber[44] = 9;
-            deckNames[32] = "Nine of Diamonds";
+            deckNames[44] = "Nine of Diamonds";
             deckNumber[45] = 10;
-            deckNames[33] = "Ten of Diamonds";
+            deckNames[45] = "Ten of Diamonds";
             deckNumber[46] = 10;
-            deckNames[34] = "Jack of Diamonds";
+            deckNames[46] = "Jack of Diamonds";
             deckNumber[47] = 10;
-            deckNames[35] = "Queen of Diamonds";
+            deckNames[47] = "Queen of Diamonds";
             deckNumber[51] = 10;
-            deckNames[50] = "King of Diamonds";
+            deckNames[51] = "King of Diamonds";
 
 
         }
@@ -195,7 +195,7 @@ namespace _21
             buttonHit.IsEnabled = false;
             if(dealerScore < 17)
             {
-                HitClac(dealerText, dealerScore);
+             //   HitClac(dealerText, dealerScore);
             }
         }
 
