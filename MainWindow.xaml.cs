@@ -25,6 +25,8 @@ namespace _21
         int[] deckNumber;
         string[] deckNames;
         int nextCard = 0;
+        string playerText;
+        int playerScore;
 
         public MainWindow()
         {
@@ -153,7 +155,7 @@ namespace _21
 
 
         }
-        private void Shuffle(int number)
+        private void Shuffle()
         {
             for (int i = 0; i < 1000000; i++)
             {
@@ -170,6 +172,32 @@ namespace _21
             }
         }
 
+        public void HitClac()
+        {
+            int card = deck[nextCard];
+            string name = deckNames[card];
+            int numberScore = deckNumber[card];
 
+            playerText = textBlockPlayerHand.Text;
+            textBlockPlayerHand.Text = name + ", " + playerText;
+
+            playerScore += numberScore;
+            textBlockScore.Text = Convert.ToString(playerScore);
+            nextCard++;
+
+        }
+
+        private void Hit_Click(object sender, RoutedEventArgs e)
+        {
+            HitClac();
+
+        }
+
+        private void buttonStart_Click(object sender, RoutedEventArgs e)
+        {
+            MakeDecks();
+            Shuffle();
+
+        }
     }
 }
