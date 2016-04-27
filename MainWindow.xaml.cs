@@ -26,8 +26,8 @@ namespace _21
         string[] deckNames;
         int nextCard = 0;
         string playerText;
-        int playerScore;
-        int dealerScore;
+        int playerScore = 0;
+        int dealerScore = 0;
         string dealerText;
 
         public MainWindow()
