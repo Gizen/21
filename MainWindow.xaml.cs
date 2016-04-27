@@ -27,6 +27,8 @@ namespace _21
         int nextCard = 0;
         string playerText;
         int playerScore;
+        int dealerScore;
+        string dealerText;
 
         public MainWindow()
         {
@@ -191,6 +193,10 @@ namespace _21
         public void StandClac()
         {
             buttonHit.IsEnabled = false;
+            if(dealerScore < 17)
+            {
+                HitClac(dealerText, dealerScore);
+            }
         }
 
         private void Hit_Click(object sender, RoutedEventArgs e)
