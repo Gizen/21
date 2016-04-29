@@ -157,6 +157,7 @@ namespace _21
 
 
         }
+
         private void Shuffle()
         {
             for (int i = 0; i < 1000000; i++)
@@ -174,20 +175,27 @@ namespace _21
             }
         }
 
-        public void HitCalc(string text, int score)
+        public int HitCalc(string text, int score)
         {
             int card = deck[nextCard];
             string name = deckNames[card];
             int numberScore = deckNumber[card];
 
             text = textBlockPlayerHand.Text;
-            textBlockPlayerHand.Text = text + ", " + name;
-
+            if(nextCard ==0)
+            {
+                textBlockPlayerHand.Text = name;
+            }
+            else
+            {
+                textBlockPlayerHand.Text = text + ", " + name;
+            }
+           
             
             score += numberScore;
             textBlockScore.Text = Convert.ToString(score);
             nextCard++;
-
+            return score;
         }
 
         public void StandCalc()
@@ -195,14 +203,18 @@ namespace _21
             buttonHit.IsEnabled = false;
             while(dealerScore < 17)
             {
-             //   HitCalc(dealerText, dealerScore);
+             //   dealerScore = HitCalc(dealerText, dealerScore);
             }
         }
 
         private void Hit_Click(object sender, RoutedEventArgs e)
         {
-            HitCalc(playerText, playerScore);
-
+            
+            playerScore = HitCalc(playerText, playerScore);
+            if ( playerScore > 21)
+            {
+                buttonHit.IsEnabled = false;
+            }
         }
 
         public void Reset()
