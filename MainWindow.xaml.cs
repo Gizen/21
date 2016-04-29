@@ -174,14 +174,14 @@ namespace _21
             }
         }
 
-        public void HitClac(string text, int score)
+        public void HitCalc(string text, int score)
         {
             int card = deck[nextCard];
             string name = deckNames[card];
             int numberScore = deckNumber[card];
 
             text = textBlockPlayerHand.Text;
-            textBlockPlayerHand.Text = name + ", " + text;
+            textBlockPlayerHand.Text = text + ", " + name;
 
             
             score += numberScore;
@@ -190,24 +190,35 @@ namespace _21
 
         }
 
-        public void StandClac()
+        public void StandCalc()
         {
             buttonHit.IsEnabled = false;
-            if(dealerScore < 17)
+            while(dealerScore < 17)
             {
-             //   HitClac(dealerText, dealerScore);
+             //   HitCalc(dealerText, dealerScore);
             }
         }
 
         private void Hit_Click(object sender, RoutedEventArgs e)
         {
-            HitClac(playerText, playerScore);
+            HitCalc(playerText, playerScore);
+
+        }
+
+        public void Reset()
+        {
+            buttonHit.IsEnabled = true;
+            nextCard = 0;
+            playerText = "";
+            playerScore = 0;
+            dealerScore = 0;
+            dealerText = "";
 
         }
 
         private void buttonStart_Click(object sender, RoutedEventArgs e)
         {
-            buttonHit.IsEnabled = true;
+            Reset();
             MakeDecks();
             Shuffle();
         }
