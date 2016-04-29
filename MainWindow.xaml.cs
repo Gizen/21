@@ -29,6 +29,7 @@ namespace _21
         int playerScore = 0;
         int dealerScore = 0;
         string dealerText;
+        int playerMoney = 500;
 
         public MainWindow()
         {
@@ -160,7 +161,7 @@ namespace _21
 
         private void Shuffle()
         {
-            for (int i = 0; i < 1000000; i++)
+            for (int i = 0; i < 99999999; i++)
             {
                 int slot1 = rnd.Next(0, 52);
                 int slot2 = slot1 - 1;
@@ -175,25 +176,25 @@ namespace _21
             }
         }
 
-        public int HitCalc(string text, int score)
+        public int HitCalc(string text, int score, TextBlock tBHand, TextBlock tBScore)
         {
             int card = deck[nextCard];
             string name = deckNames[card];
             int numberScore = deckNumber[card];
 
-            text = textBlockPlayerHand.Text;
-            if(nextCard ==0)
+            text = tBHand.Text;
+            if(score ==0)
             {
-                textBlockPlayerHand.Text = name;
+                tBHand.Text = name;
             }
             else
             {
-                textBlockPlayerHand.Text = text + ", " + name;
+                tBHand.Text = text + ", " + name;
             }
            
             
             score += numberScore;
-            textBlockScore.Text = Convert.ToString(score);
+            tBScore.Text = "You have a score of: " + score;
             nextCard++;
             return score;
         }
@@ -201,16 +202,16 @@ namespace _21
         public void StandCalc()
         {
             buttonHit.IsEnabled = false;
-            while(dealerScore < 17)
+            while (dealerScore < 17)
             {
-             //   dealerScore = HitCalc(dealerText, dealerScore);
+                dealerScore = HitCalc(dealerText, dealerScore, textBlockDealerHand, textBlockDealerScore);
             }
         }
 
         private void Hit_Click(object sender, RoutedEventArgs e)
         {
             
-            playerScore = HitCalc(playerText, playerScore);
+            playerScore = HitCalc(playerText, playerScore, textBlockPlayerHand, textBlockPlayerScore);
             if ( playerScore > 21)
             {
                 buttonHit.IsEnabled = false;
@@ -225,6 +226,11 @@ namespace _21
             playerScore = 0;
             dealerScore = 0;
             dealerText = "";
+            textBlockDealerHand.Text = "";
+            textBlockDealerScore.Text = "";
+            textBlockPlayerHand.Text = "";
+            textBlockPlayerScore.Text = "";
+
 
         }
 
@@ -233,6 +239,52 @@ namespace _21
             Reset();
             MakeDecks();
             Shuffle();
+        }
+
+        private void buttonStand_Click(object sender, RoutedEventArgs e)
+        {
+            StandCalc();
+            BettingCalc();
+        }
+
+        public void BettingCalc()
+        {
+            int winType;
+            if (dealerScore < 22 && playerScore < 22)
+            {
+                if (dealerScore > playerScore)
+                {
+                    winType = 0;
+                }
+                else if(dealerScore == playerScore)
+                {
+                    winType = 1;
+                }
+                else if(playerScore > dealerScore)
+                {
+                    if(playerScore == 21)
+                    {
+                        winType = 21;
+                    }
+                    else
+                    {
+                        winType = 2;
+                    }
+                    
+                }
+            }
+            else if (dealerScore > 22)
+            {
+                winType = 2;
+            }
+            else if ( playerScore > 22)
+            {
+                winType = 0;
+            }
+
+
+
+
         }
 
     }
