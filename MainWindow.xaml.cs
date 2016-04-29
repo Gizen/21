@@ -30,6 +30,7 @@ namespace _21
         int dealerScore = 0;
         string dealerText;
         int playerMoney = 500;
+        int betAmount;
 
         public MainWindow()
         {
@@ -239,6 +240,8 @@ namespace _21
             Reset();
             MakeDecks();
             Shuffle();
+            betAmount = Convert.ToInt32(textBox.Text);
+
         }
 
         private void buttonStand_Click(object sender, RoutedEventArgs e)
