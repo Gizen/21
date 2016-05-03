@@ -38,6 +38,10 @@ namespace _21
             InitializeComponent();
         }
 
+        
+   
+
+
         private void MakeDecks()
         {
             deck = new int[52];
@@ -223,33 +227,71 @@ namespace _21
         public void Reset()
         {
             buttonHit.IsEnabled = true;
+            buttonStand.IsEnabled = true;
             nextCard = 0;
             playerText = "";
             playerScore = 0;
             dealerScore = 0;
             dealerText = "";
-            textBlockDealerHand.Text = "";
-            textBlockDealerScore.Text = "";
-            textBlockPlayerHand.Text = "";
-            textBlockPlayerScore.Text = "";
+            textBlockDealerHand.Text = "Dealer's Hand";
+            textBlockDealerScore.Text = "The dealer has a score of:";
+            textBlockPlayerHand.Text = "Player hand";
+            textBlockPlayerScore.Text = "Player's Hand";
+            textBlockValid.Text = "";
 
 
         }
 
         private void buttonStart_Click(object sender, RoutedEventArgs e)
         {
-            Reset();
-            MakeDecks();
-            Shuffle();
-            betAmount = Convert.ToInt32(textBox.Text);
+            if (textBox.Text != "" )
+            {
+                if (ValidInput())
+                {
+                    Reset();
+                    MakeDecks();
+                    Shuffle();
+                    betAmount = Convert.ToInt32(textBox.Text);
+                    playerScore = HitCalc(playerText, playerScore, textBlockPlayerHand, textBlockPlayerScore);
+                    dealerScore = HitCalc(dealerText, dealerScore, textBlockDealerHand, textBlockDealerScore);
+                    playerScore = HitCalc(playerText, playerScore, textBlockPlayerHand, textBlockPlayerScore);
+                    if (playerScore == 21)
+                    {
+                        winType = 21;
+                        BetCalc();
+                        buttonHit.IsEnabled = false
+                        buttonStand.IsEnabled = false;
+                        buttonStart.IsEnabled = true;
+                        textBlock.IsEnabled = true;
+                    }
+                    buttonStart.IsEnabled = false;
+                    textBlock.IsEnabled = false;
+                }
+                else
+                {
+                    //Error
+                    textBlockValid.Text = "Please put in a wager with just ints or the program will not work.";
+
+                }
+
+            }
+            else
+            {
+                //Error
+                textBlockValid.Text = "Please put in a wager with just ints or the program will not work.";
+
+            }
 
         }
 
         private void buttonStand_Click(object sender, RoutedEventArgs e)
         {
+            buttonStand.IsEnabled = false;
             StandCalc();
             WinTypeCalc();
             BetCalc();
+            buttonStart.IsEnabled = true;
+            textBlock.IsEnabled = true;
 
         }
 
@@ -268,15 +310,7 @@ namespace _21
                 }
                 else if(playerScore > dealerScore)
                 {
-                    if(playerScore == 21)
-                    {
-                        winType = 21;
-                    }
-                    else
-                    {
-                        winType = 2;
-                    }
-                    
+                    winType = 2;                    
                 }
             }
             else if (dealerScore > 22 && playerScore > 22)
@@ -304,8 +338,18 @@ namespace _21
             {
                 playerPoints += betAmount;
             }
+            else if (winType == 21)
+            {
+                betAmount = betAmount * 3 / 2;
+                playerPoints += betAmount;
+            }
             textBlockPlayerPoints.Text = "You Have " + playerPoints + " Points Left.";
         }
+        public bool ValidInput()
+        {
+            string text = textBox.Text;
+            return text.All(Char.IsDigit);
 
+        }
     }
 }

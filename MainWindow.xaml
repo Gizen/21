@@ -12,11 +12,12 @@
         <Button x:Name="buttonStart" Content="Start Round" HorizontalAlignment="Left" Height="50" Margin="250,275,0,0" VerticalAlignment="Top" Width="100" Click="buttonStart_Click"/>
         <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="25" Margin="25,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
         <TextBlock x:Name="textBlockPlayerScore" HorizontalAlignment="Left" Height="50" Margin="250,516,0,0" TextWrapping="Wrap" Text="You Have A Score Of:" VerticalAlignment="Top" Width="100"/>
-        <TextBlock x:Name="textBlockPlayerHand" HorizontalAlignment="Left" Height="181" Margin="10,330,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="572"/>
-        <TextBlock x:Name="textBlockDealerHand" HorizontalAlignment="Left" Height="205" Margin="10,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="565"/>
+        <TextBlock x:Name="textBlockPlayerHand" HorizontalAlignment="Left" Height="181" Margin="10,330,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="572" Text="Player's hand:"/>
+        <TextBlock x:Name="textBlockDealerHand" HorizontalAlignment="Left" Height="205" Margin="10,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="565" Text="Dealer's Hand:"/>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="25" Margin="25,275,0,0" TextWrapping="Wrap" Text="Points To Wager" VerticalAlignment="Top" Width="100"/>
-        <TextBlock x:Name="textBlockDealerScore" HorizontalAlignment="Left" Height="50" Margin="250,10,0,0" TextWrapping="Wrap" Text="You have A Score Of:" VerticalAlignment="Top" Width="100"/>
-        <TextBlock x:Name="textBlockPlayerPoints" HorizontalAlignment="Left" Height="50" Margin="475,275,0,0" TextWrapping="Wrap" Text="You have       Points Left" VerticalAlignment="Top" Width="100"/>
+        <TextBlock x:Name="textBlockDealerScore" HorizontalAlignment="Left" Height="50" Margin="250,10,0,0" TextWrapping="Wrap" Text="The dealer has A Score Of:" VerticalAlignment="Top" Width="100"/>
+        <TextBlock x:Name="textBlockPlayerPoints" HorizontalAlignment="Left" Height="50" Margin="475,275,0,0" TextWrapping="Wrap" Text="You have  500 Points Left" VerticalAlignment="Top" Width="100"/>
+        <TextBlock x:Name="textBlockValid" HorizontalAlignment="Left" Height="43" Margin="19,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="211"/>
 
     </Grid>
 </Window>
