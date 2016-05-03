@@ -259,7 +259,7 @@ namespace _21
                     {
                         winType = 21;
                         BetCalc();
-                        buttonHit.IsEnabled = false
+                        buttonHit.IsEnabled = false;
                         buttonStand.IsEnabled = false;
                         buttonStart.IsEnabled = true;
                         textBlock.IsEnabled = true;
@@ -345,6 +345,7 @@ namespace _21
             }
             textBlockPlayerPoints.Text = "You Have " + playerPoints + " Points Left.";
         }
+
         public bool ValidInput()
         {
             string text = textBox.Text;
