@@ -29,8 +29,9 @@ namespace _21
         int playerScore = 0;
         int dealerScore = 0;
         string dealerText;
-        int playerMoney = 500;
+        int playerPoints = 500;
         int betAmount;
+        int winType;
 
         public MainWindow()
         {
@@ -162,7 +163,7 @@ namespace _21
 
         private void Shuffle()
         {
-            for (int i = 0; i < 99999999; i++)
+            for (int i = 0; i < 1000000; i++)
             {
                 int slot1 = rnd.Next(0, 52);
                 int slot2 = slot1 - 1;
@@ -247,12 +248,14 @@ namespace _21
         private void buttonStand_Click(object sender, RoutedEventArgs e)
         {
             StandCalc();
-            BettingCalc();
+            WinTypeCalc();
+            BetCalc();
+
         }
 
-        public void BettingCalc()
+        public void WinTypeCalc()
         {
-            int winType;
+            
             if (dealerScore < 22 && playerScore < 22)
             {
                 if (dealerScore > playerScore)
@@ -276,6 +279,10 @@ namespace _21
                     
                 }
             }
+            else if (dealerScore > 22 && playerScore > 22)
+            {
+                winType = 1;
+            }
             else if (dealerScore > 22)
             {
                 winType = 2;
@@ -285,11 +292,19 @@ namespace _21
                 winType = 0;
             }
 
+        }
 
-
-
-
-
+        public void BetCalc()
+        {
+            if (winType == 0)
+            {
+                playerPoints -= betAmount;
+            }
+            else if (winType == 2)
+            {
+                playerPoints += betAmount;
+            }
+            textBlockPlayerPoints.Text = "You Have " + playerPoints + " Points Left.";
         }
 
     }
