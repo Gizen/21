@@ -24,6 +24,7 @@ namespace _21
         int[] deck;
         int[] deckNumber;
         string[] deckNames;
+        Image[] deckImages;
         int nextCard = 0;
         string playerText;
         int playerScore = 0;
@@ -51,8 +52,16 @@ namespace _21
             }
             deckNumber = new int[52];
             deckNames = new string[52];
+            deckImages = new Image[52];
+
             deckNumber[0] = 1;
             deckNames[0] = "Ace of Spades";
+
+            Uri u = new Uri("pack://application:,,,images/40px-Playing_card_club_10.svg.png", UriKind.Relative);
+
+            BitmapImage bmi = new BitmapImage(new Uri("images/40px-Playing_card_club_10.svg.png", UriKind.Absolute));
+
+            deckImages[0].Source = new BitmapImage(new Uri("images/40px-Playing_card_club_10.svg.png", UriKind.Relative));
             deckNumber[1] = 2;
             deckNames[1] = "Two of Spades";
             deckNumber[2] = 3;
@@ -248,24 +257,27 @@ namespace _21
             {
                 if (ValidInput())
                 {
-                    Reset();
-                    MakeDecks();
-                    Shuffle();
-                    betAmount = Convert.ToInt32(textBox.Text);
-                    playerScore = HitCalc(playerText, playerScore, textBlockPlayerHand, textBlockPlayerScore);
-                    dealerScore = HitCalc(dealerText, dealerScore, textBlockDealerHand, textBlockDealerScore);
-                    playerScore = HitCalc(playerText, playerScore, textBlockPlayerHand, textBlockPlayerScore);
-                    if (playerScore == 21)
+                    if (Convert.ToInt32(textBox.Text) < playerPoints)
                     {
-                        winType = 21;
-                        BetCalc();
-                        buttonHit.IsEnabled = false;
-                        buttonStand.IsEnabled = false;
-                        buttonStart.IsEnabled = true;
-                        textBlock.IsEnabled = true;
+                        Reset();
+                        MakeDecks();
+                        Shuffle();
+                        betAmount = Convert.ToInt32(textBox.Text);
+                        playerScore = HitCalc(playerText, playerScore, textBlockPlayerHand, textBlockPlayerScore);
+                        dealerScore = HitCalc(dealerText, dealerScore, textBlockDealerHand, textBlockDealerScore);
+                        playerScore = HitCalc(playerText, playerScore, textBlockPlayerHand, textBlockPlayerScore);
+                        if (playerScore == 21)
+                        {
+                            winType = 21;
+                            BetCalc();
+                            buttonHit.IsEnabled = false;
+                            buttonStand.IsEnabled = false;
+                            buttonStart.IsEnabled = true;
+                            textBlock.IsEnabled = true;
+                        }
+                        buttonStart.IsEnabled = false;
+                        textBlock.IsEnabled = false;
                     }
-                    buttonStart.IsEnabled = false;
-                    textBlock.IsEnabled = false;
                 }
                 else
                 {

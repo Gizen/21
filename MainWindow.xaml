@@ -18,6 +18,7 @@
         <TextBlock x:Name="textBlockDealerScore" HorizontalAlignment="Left" Height="50" Margin="250,10,0,0" TextWrapping="Wrap" Text="The dealer has A Score Of:" VerticalAlignment="Top" Width="100"/>
         <TextBlock x:Name="textBlockPlayerPoints" HorizontalAlignment="Left" Height="50" Margin="475,275,0,0" TextWrapping="Wrap" Text="You have  500 Points Left" VerticalAlignment="Top" Width="100"/>
         <TextBlock x:Name="textBlockValid" HorizontalAlignment="Left" Height="43" Margin="19,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="211"/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="100" Margin="475,26,0,0" VerticalAlignment="Top" Width="100" Source="images/40px-Playing_card_club_10.svg.png"/>
 
     </Grid>
 </Window>
