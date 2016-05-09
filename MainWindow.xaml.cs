@@ -66,114 +66,114 @@ namespace _21
 
             deckNumber[1] = 2;
             deckNames[1] = "Two of Spades";
-            deckImages[0].Source = new BitmapImage(new Uri("images/ace_spades.png", UriKind.Relative));
+            deckImages[0].Source = new BitmapImage(new Uri("images/spade2.png", UriKind.Relative));
 
 
             deckNumber[2] = 3;
             deckNames[2] = "Three of Spades";
-            deckImages[0].Source = new BitmapImage(new Uri("images/ace_spades.png", UriKind.Relative));
+            deckImages[0].Source = new BitmapImage(new Uri("images/spade3.png", UriKind.Relative));
 
 
             deckNumber[3] = 4;
             deckNames[3] = "Four of Spades";
-            deckImages[0].Source = new BitmapImage(new Uri("images/ace_spades.png", UriKind.Relative));
+            deckImages[0].Source = new BitmapImage(new Uri("images/spade4.png", UriKind.Relative));
 
 
             deckNumber[4] = 5;
             deckNames[4] = "Five of Spades";
-            deckImages[0].Source = new BitmapImage(new Uri("images/ace_spades.png", UriKind.Relative));
+            deckImages[0].Source = new BitmapImage(new Uri("images/spade5.png", UriKind.Relative));
 
 
             deckNumber[5] = 6;
             deckNames[5] = "Six of Spades";
-            deckImages[0].Source = new BitmapImage(new Uri("images/ace_spades.png", UriKind.Relative));
+            deckImages[0].Source = new BitmapImage(new Uri("images/spade6.png", UriKind.Relative));
 
 
             deckNumber[6] = 7;
             deckNames[6] = "Seven of Spades";
-            deckImages[0].Source = new BitmapImage(new Uri("images/ace_spades.png", UriKind.Relative));
+            deckImages[0].Source = new BitmapImage(new Uri("images/spade7.png", UriKind.Relative));
 
 
             deckNumber[7] = 8;
             deckNames[7] = "Eight of Spades";
-            deckImages[0].Source = new BitmapImage(new Uri("images/ace_spades.png", UriKind.Relative));
+            deckImages[0].Source = new BitmapImage(new Uri("images/spade8.png", UriKind.Relative));
 
 
             deckNumber[8] = 9;
             deckNames[8] = "Nine of Spades";
-            deckImages[0].Source = new BitmapImage(new Uri("images/ace_spades.png", UriKind.Relative));
+            deckImages[0].Source = new BitmapImage(new Uri("images/spade9.png", UriKind.Relative));
 
 
             deckNumber[9] = 10;
             deckNames[9] = "Ten of Spades";
-            deckImages[0].Source = new BitmapImage(new Uri("images/ace_spades.png", UriKind.Relative));
+            deckImages[0].Source = new BitmapImage(new Uri("images/spade10.png", UriKind.Relative));
 
 
             deckNumber[10] = 10;
             deckNames[10] = "Jack of Spades";
-            deckImages[0].Source = new BitmapImage(new Uri("images/ace_spades.png", UriKind.Relative));
+            deckImages[0].Source = new BitmapImage(new Uri("images/spadeJ.png", UriKind.Relative));
 
 
             deckNumber[11] = 10;
             deckNames[11] = "Queen of Spades";
-            deckImages[0].Source = new BitmapImage(new Uri("images/ace_spades.png", UriKind.Relative));
+            deckImages[0].Source = new BitmapImage(new Uri("images/spadeQ.png", UriKind.Relative));
 
 
             deckNumber[49] = 10;
             deckNames[49] = "King of Spades";
-            deckImages[0].Source = new BitmapImage(new Uri("images/ace_spades.png", UriKind.Relative));
+            deckImages[0].Source = new BitmapImage(new Uri("images/spadeK.png", UriKind.Relative));
 
 
 
 
             deckNumber[12] = 11;
             deckNames[12] = "Ace of Hearts";
-            deckImages[0].Source = new BitmapImage(new Uri("images/ace_spades.png", UriKind.Relative));
+            deckImages[0].Source = new BitmapImage(new Uri("images/heartA.png", UriKind.Relative));
 
 
             deckNumber[13] = 2;
             deckNames[13] = "Two of Hearts";
-            deckImages[0].Source = new BitmapImage(new Uri("images/ace_spades.png", UriKind.Relative));
+            deckImages[0].Source = new BitmapImage(new Uri("images/heart2.png", UriKind.Relative));
 
 
             deckNumber[14] = 3;
             deckNames[14] = "Three of Hearts";
-            deckImages[0].Source = new BitmapImage(new Uri("images/ace_spades.png", UriKind.Relative));
+            deckImages[0].Source = new BitmapImage(new Uri("images/heart3.png", UriKind.Relative));
 
 
             deckNumber[15] = 4;
             deckNames[15] = "Four of Hearts";
-            deckImages[0].Source = new BitmapImage(new Uri("images/ace_spades.png", UriKind.Relative));
+            deckImages[0].Source = new BitmapImage(new Uri("images/heart4.png", UriKind.Relative));
 
 
             deckNumber[16] = 5;
             deckNames[16] = "Five of Hearts";
-            deckImages[0].Source = new BitmapImage(new Uri("images/ace_spades.png", UriKind.Relative));
+            deckImages[0].Source = new BitmapImage(new Uri("images/heart5.png", UriKind.Relative));
 
 
             deckNumber[17] = 6;
             deckNames[17] = "Six of Hearts";
-            deckImages[0].Source = new BitmapImage(new Uri("images/ace_spades.png", UriKind.Relative));
+            deckImages[0].Source = new BitmapImage(new Uri("images/heart6.png", UriKind.Relative));
 
 
             deckNumber[18] = 7;
             deckNames[18] = "Seven of Hearts";
-            deckImages[0].Source = new BitmapImage(new Uri("images/ace_spades.png", UriKind.Relative));
+            deckImages[0].Source = new BitmapImage(new Uri("images/heart7.png", UriKind.Relative));
 
 
             deckNumber[19] = 8;
             deckNames[19] = "Eight of Hearts";
-            deckImages[0].Source = new BitmapImage(new Uri("images/ace_spades.png", UriKind.Relative));
+            deckImages[0].Source = new BitmapImage(new Uri("images/heart8.png", UriKind.Relative));
 
 
             deckNumber[20] = 9;
             deckNames[20] = "Nine of Hearts";
-            deckImages[0].Source = new BitmapImage(new Uri("images/ace_spades.png", UriKind.Relative));
+            deckImages[0].Source = new BitmapImage(new Uri("images/heart9.png", UriKind.Relative));
 
 
             deckNumber[21] = 10;
             deckNames[21] = "Ten of Hearts";
-            deckImages[0].Source = new BitmapImage(new Uri("images/ace_spades.png", UriKind.Relative));
+            deckImages[0].Source = new BitmapImage(new Uri("images/heart10.png", UriKind.Relative));
 
 
             deckNumber[22] = 10;
