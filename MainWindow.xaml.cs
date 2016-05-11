@@ -282,12 +282,12 @@ namespace _21
 
             deckNumber[40] = 5;
             deckNames[40] = "Five of Diamonds";
-            deckImages[41].Source = new BitmapImage(new Uri("images/diamond5.png", UriKind.Relative));
+            deckImages[40].Source = new BitmapImage(new Uri("images/diamond5.png", UriKind.Relative));
 
 
             deckNumber[41] = 6;
             deckNames[41] = "Six of Diamonds";
-            deckImages[42].Source = new BitmapImage(new Uri("images/diamond6.png", UriKind.Relative));
+            deckImages[41].Source = new BitmapImage(new Uri("images/diamond6.png", UriKind.Relative));
 
 
             deckNumber[42] = 7;
@@ -346,6 +346,7 @@ namespace _21
 
         public int HitCalc(string text, int score, StackPanel stack, TextBlock tBScore, int aces, bool player)
         {
+
             int card = deck[nextCard];
             string name = deckNames[card];
             int numberScore = deckNumber[card];
@@ -466,8 +467,11 @@ namespace _21
                             textBlock.IsEnabled = true;
                             BetCalc();
                         }
-                        buttonStart.IsEnabled = false;
-                        textBlock.IsEnabled = false;
+                        else
+                        {
+                            buttonStart.IsEnabled = false;
+                            textBlock.IsEnabled = false;
+                        }
                     }
                 }
                 else
