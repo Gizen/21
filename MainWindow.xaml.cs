@@ -47,7 +47,7 @@ namespace _21
         private void MakeDecks()
         {
             deck = new int[52];
-            for (int i = 0; i < 52; i++)
+            for (int i = 0; i < 51; i++)
             {
                 deck[i] = i + 1;               
             }
