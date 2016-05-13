@@ -38,6 +38,9 @@ namespace _21
         public MainWindow()
         {
             InitializeComponent();
+            buttonHit.IsEnabled = false;
+            buttonStand.IsEnabled = false;
+
         }
 
 
