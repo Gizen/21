@@ -40,16 +40,156 @@ namespace _21
             InitializeComponent();
         }
 
-        
-   
+
+        //BUTTONS
+
+        //Start
+        private void buttonStart_Click(object sender, RoutedEventArgs e)
+        {
+            //Check if there is a wager
+            if (textBox.Text != "")
+            {
+
+                //Check if the wager is all ints 
+                if (ValidInput())
+                {
+
+                    //Check if the wager is <= points left
+                    if (Convert.ToInt32(textBox.Text) <= playerPoints)
+                    {
+
+                        //Reset
+                        Reset();
+
+                        //Make Decks
+                        MakeDecks();
+
+                        //Shuffle the shuffle deck
+                        Shuffle();
+
+                        //Get wager amount
+                        betAmount = Convert.ToInt32(textBox.Text);
+
+                        //Give the starting cards
+                        playerScore = HitCalc(playerText, playerScore, playerStack, textBlockPlayerScore, ref pAces, true);
+                        dealerScore = HitCalc(dealerText, dealerScore, dealersStack, textBlockDealerScore, ref dAces, false);
+                        playerScore = HitCalc(playerText, playerScore, playerStack, textBlockPlayerScore, ref pAces, true);
+
+                        //Check for Blackjack
+                        if (playerScore == 21)
+                        {
+                            winType = 21;
+                            BetCalc();
+                            buttonHit.IsEnabled = false;
+                            buttonStand.IsEnabled = false;
+                            buttonStart.IsEnabled = true;
+                            textBlock.IsEnabled = true;
+                            BetCalc();
+                        }
+                        else
+                        {
+                            buttonStart.IsEnabled = false;
+                            textBlock.IsEnabled = false;
+                        }
+                    }
+                    else
+                    //Give Error
+                    {
+                        textBlockValid.Text = "Please put in a wager smaller or equal to your points left.";
+
+                    }
+                }
+                else
+                //Give Error
+                {
+                    textBlockValid.Text = "Please put in a wager with just ints or the program will not work.";
+
+                }
+
+            }
+            else
+            //Give Error
+            {
+                textBlockValid.Text = "Please put in a wager.";
+
+            }
+
+        }
 
 
+        //Hit
+        private void Hit_Click(object sender, RoutedEventArgs e)
+        {
+            //Give player another card
+            playerScore = HitCalc(playerText, playerScore, playerStack, textBlockPlayerScore, ref pAces, true);
+
+            //See if an ace should be a 1
+            if (playerScore > 21 && pAces > 0)
+            {
+                playerScore = playerScore - 10;
+                pAces -= 1;
+                textBlockPlayerScore.Text = "You have a score of: " + playerScore;
+            }
+
+            //Disable Hit button if the score is a bust
+            else if (playerScore > 21 && pAces == 0)
+            {
+                buttonHit.IsEnabled = false;
+            }
+        }
+ 
+
+        //Stand
+        private void buttonStand_Click(object sender, RoutedEventArgs e)
+        {
+            //Disable stand
+            buttonStand.IsEnabled = false;
+
+            //Run the stand method
+            StandCalc();
+
+            //See how the game was won
+            WinTypeCalc();
+
+            //Calc the player points based on the game outcome
+            BetCalc();
+
+            //Enable butons
+            buttonStart.IsEnabled = true;
+            textBlock.IsEnabled = true;
+
+        }
+
+
+
+        //METHODS
+
+        //Start Methods
+        public void Reset()
+        {
+            buttonHit.IsEnabled = true;
+            buttonStand.IsEnabled = true;
+            nextCard = 0;
+            playerText = "";
+            playerScore = 0;
+            dealerScore = 0;
+            dealerText = "";
+            dealersStack.Children.Clear();
+            textBlockDealerScore.Text = "The dealer has a score of:";
+            playerStack.Children.Clear();
+            textBlockPlayerScore.Text = "Player's Hand";
+            textBlockValid.Text = "";
+            pAces = 0;
+            dAces = 0;
+
+
+        }
         private void MakeDecks()
         {
             deck = new int[52];
             for (int i = 0; i < 51; i++)
             {
-                deck[i] = i + 1;               
+                deck[i] = i + 1;
             }
             deckNumber = new int[52];
             deckNames = new string[52];
@@ -326,7 +466,6 @@ namespace _21
 
 
         }
-
         private void Shuffle()
         {
             for (int i = 0; i < 1000000; i++)
@@ -343,7 +482,15 @@ namespace _21
                 deck[slot2] = number1;
             }
         }
+        public bool ValidInput()
+        {
+            string text = textBox.Text;
+            return text.All(Char.IsDigit);
 
+        }
+
+
+        //Hit Method
         public int HitCalc(string text, int score, StackPanel stack, TextBlock tBScore, ref int aces, bool player)
         {
 
@@ -356,7 +503,7 @@ namespace _21
 
             stack.Children.Add(img);
 
-            
+
 
             //text = tBHand.Text;
             //if(score == 0)
@@ -373,33 +520,35 @@ namespace _21
             {
                 aces++;
             }
-            if(player == false)
+            if (player == false)
             {
                 tBScore.Text = "The dealer has a score of: " + score;
             }
             else
             {
                 tBScore.Text = "You have a score of: " + score;
-            }            
+            }
             nextCard++;
-            if(nextCard == 52)
+            if (nextCard == 52)
             {
                 nextCard = 1;
             }
             return score;
         }
 
+
+        //Stand Methods
         public void StandCalc()
         {
             buttonHit.IsEnabled = false;
             while (dealerScore < 17)
             {
                 dealerScore = HitCalc(dealerText, dealerScore, dealersStack, textBlockDealerScore, ref dAces, false);
-                if(dealerScore == 17 && dAces > 0)
+                if (dealerScore == 17 && dAces > 0)
                 {
                     dealerScore = HitCalc(dealerText, dealerScore, dealersStack, textBlockDealerScore, ref dAces, false);
                 }
-                if(dealerScore > 21 && dAces > 0)
+                if (dealerScore > 21 && dAces > 0)
                 {
                     dealerScore -= 10;
                     dAces -= 1;
@@ -407,122 +556,22 @@ namespace _21
                 }
             }
         }
-
-        private void Hit_Click(object sender, RoutedEventArgs e)
-        {
-            
-            playerScore = HitCalc(playerText, playerScore, playerStack, textBlockPlayerScore, ref pAces, true);
-            if(playerScore > 21 && pAces > 0)
-            {
-                playerScore = playerScore - 10;
-                pAces -= 1;
-                textBlockPlayerScore.Text = "You have a score of: " + playerScore;
-            }
-            else if ( playerScore > 21 && pAces ==0)
-            {
-                buttonHit.IsEnabled = false;
-            }
-        }
-
-        public void Reset()
-        {
-            buttonHit.IsEnabled = true;
-            buttonStand.IsEnabled = true;
-            nextCard = 0;
-            playerText = "";
-            playerScore = 0;
-            dealerScore = 0;
-            dealerText = "";
-            dealersStack.Children.Clear();
-            textBlockDealerScore.Text = "The dealer has a score of:";
-            playerStack.Children.Clear();
-            textBlockPlayerScore.Text = "Player's Hand";
-            textBlockValid.Text = "";
-            pAces = 0;
-            dAces = 0;
-
-
-        }
-
-        private void buttonStart_Click(object sender, RoutedEventArgs e)
-        {
-            if (textBox.Text != "" )
-            {
-                if (ValidInput())
-                {
-                    if (Convert.ToInt32(textBox.Text) <= playerPoints)
-                    {
-                        Reset();
-                        MakeDecks();
-                        Shuffle();
-                        betAmount = Convert.ToInt32(textBox.Text);
-                        playerScore = HitCalc(playerText, playerScore, playerStack, textBlockPlayerScore, ref pAces, true);
-                        dealerScore = HitCalc(dealerText, dealerScore, dealersStack, textBlockDealerScore, ref dAces, false);
-                        playerScore = HitCalc(playerText, playerScore, playerStack, textBlockPlayerScore, ref pAces, true);
-                        if (playerScore == 21)
-                        {
-                            winType = 21;
-                            BetCalc();
-                            buttonHit.IsEnabled = false;
-                            buttonStand.IsEnabled = false;
-                            buttonStart.IsEnabled = true;
-                            textBlock.IsEnabled = true;
-                            BetCalc();
-                        }
-                        else
-                        {
-                            buttonStart.IsEnabled = false;
-                            textBlock.IsEnabled = false;
-                        }
-                    }
-                    else
-                    {
-                        textBlockValid.Text = "Please put in a wager smaller or equal to your points left.";
-
-                    }
-                }
-                else
-                {
-                    textBlockValid.Text = "Please put in a wager with just ints or the program will not work.";
-
-                }
-
-            }
-            else
-            {
-                textBlockValid.Text = "Please put in a wager.";
-
-            }
-
-        }
-
-        private void buttonStand_Click(object sender, RoutedEventArgs e)
-        {
-            buttonStand.IsEnabled = false;
-            StandCalc();
-            WinTypeCalc();
-            BetCalc();
-            buttonStart.IsEnabled = true;
-            textBlock.IsEnabled = true;
-
-        }
-
         public void WinTypeCalc()
         {
-            
+
             if (dealerScore < 22 && playerScore < 22)
             {
                 if (dealerScore > playerScore)
                 {
                     winType = 0;
                 }
-                else if(dealerScore == playerScore)
+                else if (dealerScore == playerScore)
                 {
                     winType = 1;
                 }
-                else if(playerScore > dealerScore)
+                else if (playerScore > dealerScore)
                 {
-                    winType = 2;                    
+                    winType = 2;
                 }
             }
             else if (dealerScore > 22 && playerScore > 22)
@@ -533,13 +582,12 @@ namespace _21
             {
                 winType = 2;
             }
-            else if ( playerScore > 22)
+            else if (playerScore > 22)
             {
                 winType = 0;
             }
 
         }
-
         public void BetCalc()
         {
             string win = "";
@@ -575,12 +623,6 @@ namespace _21
             }
         }
 
-        public bool ValidInput()
-        {
-            string text = textBox.Text;
-            return text.All(Char.IsDigit);
-
-        }
 
 
     }
