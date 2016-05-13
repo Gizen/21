@@ -344,7 +344,7 @@ namespace _21
             }
         }
 
-        public int HitCalc(string text, int score, StackPanel stack, TextBlock tBScore, int aces, bool player)
+        public int HitCalc(string text, int score, StackPanel stack, TextBlock tBScore, ref int aces, bool player)
         {
 
             int card = deck[nextCard];
@@ -394,10 +394,10 @@ namespace _21
             buttonHit.IsEnabled = false;
             while (dealerScore < 17)
             {
-                dealerScore = HitCalc(dealerText, dealerScore, dealersStack, textBlockDealerScore, dAces, false);
+                dealerScore = HitCalc(dealerText, dealerScore, dealersStack, textBlockDealerScore, ref dAces, false);
                 if(dealerScore == 17 && dAces > 0)
                 {
-                    dealerScore = HitCalc(dealerText, dealerScore, dealersStack, textBlockDealerScore, dAces, false);
+                    dealerScore = HitCalc(dealerText, dealerScore, dealersStack, textBlockDealerScore, ref dAces, false);
                 }
                 if(dealerScore > 21 && dAces > 0)
                 {
@@ -411,7 +411,7 @@ namespace _21
         private void Hit_Click(object sender, RoutedEventArgs e)
         {
             
-            playerScore = HitCalc(playerText, playerScore, playerStack, textBlockPlayerScore, pAces, true);
+            playerScore = HitCalc(playerText, playerScore, playerStack, textBlockPlayerScore, ref pAces, true);
             if(playerScore > 21 && pAces > 0)
             {
                 playerScore = playerScore - 10;
@@ -438,6 +438,8 @@ namespace _21
             playerStack.Children.Clear();
             textBlockPlayerScore.Text = "Player's Hand";
             textBlockValid.Text = "";
+            pAces = 0;
+            dAces = 0;
 
 
         }
@@ -448,15 +450,15 @@ namespace _21
             {
                 if (ValidInput())
                 {
-                    if (Convert.ToInt32(textBox.Text) < playerPoints)
+                    if (Convert.ToInt32(textBox.Text) <= playerPoints)
                     {
                         Reset();
                         MakeDecks();
                         Shuffle();
                         betAmount = Convert.ToInt32(textBox.Text);
-                        playerScore = HitCalc(playerText, playerScore, playerStack, textBlockPlayerScore, pAces, true);
-                        dealerScore = HitCalc(dealerText, dealerScore, dealersStack, textBlockDealerScore, dAces, false);
-                        playerScore = HitCalc(playerText, playerScore, playerStack, textBlockPlayerScore, pAces, true);
+                        playerScore = HitCalc(playerText, playerScore, playerStack, textBlockPlayerScore, ref pAces, true);
+                        dealerScore = HitCalc(dealerText, dealerScore, dealersStack, textBlockDealerScore, ref dAces, false);
+                        playerScore = HitCalc(playerText, playerScore, playerStack, textBlockPlayerScore, ref pAces, true);
                         if (playerScore == 21)
                         {
                             winType = 21;
@@ -473,10 +475,14 @@ namespace _21
                             textBlock.IsEnabled = false;
                         }
                     }
+                    else
+                    {
+                        textBlockValid.Text = "Please put in a wager smaller or equal to your points left."
+
+                    }
                 }
                 else
                 {
-                    //Error
                     textBlockValid.Text = "Please put in a wager with just ints or the program will not work.";
 
                 }
@@ -484,8 +490,7 @@ namespace _21
             }
             else
             {
-                //Error
-                textBlockValid.Text = "Please put in a wager with just ints or the program will not work.";
+                textBlockValid.Text = "Please put in a wager.";
 
             }
 
@@ -558,8 +563,16 @@ namespace _21
             {
                 win = " Tie, nobody won.";
             }
-            textBlockPlayerPoints.Text = "You Have " + playerPoints + " Points Left.";
-            textBlockValid.Text = win;
+            if (playerPoints == 1)
+            {
+                textBlockPlayerPoints.Text = "You Have 1 Point Left.";
+                textBlockValid.Text = win;
+            }
+            else
+            {
+                textBlockPlayerPoints.Text = "You Have " + playerPoints + " Points Left.";
+                textBlockValid.Text = win;
+            }
         }
 
         public bool ValidInput()
