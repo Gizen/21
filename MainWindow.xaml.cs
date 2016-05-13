@@ -477,7 +477,7 @@ namespace _21
                     }
                     else
                     {
-                        textBlockValid.Text = "Please put in a wager smaller or equal to your points left."
+                        textBlockValid.Text = "Please put in a wager smaller or equal to your points left.";
 
                     }
                 }
