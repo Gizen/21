@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:_21"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="600">
-    <Grid>
+    <Grid Background="#FFF9F9FB">
         <Button x:Name="buttonHit" Content="Hit" HorizontalAlignment="Left" Height="50" Margin="150,275,0,0" VerticalAlignment="Top" Width="50" Click="Hit_Click"/>
         <Button x:Name="buttonStand" Content="Stand" HorizontalAlignment="Left" Height="50" Margin="400,275,0,0" VerticalAlignment="Top" Width="50" Click="buttonStand_Click"/>
         <Button x:Name="buttonStart" Content="Start Round" HorizontalAlignment="Left" Height="50" Margin="250,275,0,0" VerticalAlignment="Top" Width="100" Click="buttonStart_Click"/>
