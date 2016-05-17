@@ -58,7 +58,7 @@ namespace _21
                 {
 
                     //Check if the wager is <= points left
-                    if (Convert.ToInt32(textBox.Text) <= playerPoints)
+                    if (Convert.ToInt32(textBox.Text) <= playerPoints && Convert.ToInt32(textBox.Text) > 0)
                     {
 
                         //Reset
