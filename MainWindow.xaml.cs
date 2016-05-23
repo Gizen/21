@@ -119,7 +119,6 @@ namespace _21
 
         }
 
-
         //Hit
         private void Hit_Click(object sender, RoutedEventArgs e)
         {
@@ -137,10 +136,14 @@ namespace _21
             //Disable Hit button if the score is a bust
             else if (playerScore > 21 && pAces == 0)
             {
+                winType = 0;
                 buttonHit.IsEnabled = false;
+                buttonStand.IsEnabled = false;
+                buttonStart.IsEnabled = true;
+                textBlock.IsEnabled = true;
+                BetCalc();
             }
         }
- 
 
         //Stand
         private void buttonStand_Click(object sender, RoutedEventArgs e)
@@ -187,6 +190,7 @@ namespace _21
 
 
         }
+
         private void MakeDecks()
         {
             deck = new int[52];
@@ -469,6 +473,7 @@ namespace _21
 
 
         }
+
         private void Shuffle()
         {
             for (int i = 0; i < 1000000; i++)
@@ -485,6 +490,7 @@ namespace _21
                 deck[slot2] = number1;
             }
         }
+
         public bool ValidInput()
         {
             string text = textBox.Text;
@@ -559,6 +565,7 @@ namespace _21
                 }
             }
         }
+
         public void WinTypeCalc()
         {
 
@@ -577,10 +584,6 @@ namespace _21
                     winType = 2;
                 }
             }
-            else if (dealerScore > 22 && playerScore > 22)
-            {
-                winType = 1;
-            }
             else if (dealerScore > 22)
             {
                 winType = 2;
@@ -591,6 +594,7 @@ namespace _21
             }
 
         }
+
         public void BetCalc()
         {
             string win = "";
