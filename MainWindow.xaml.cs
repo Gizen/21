@@ -46,7 +46,7 @@ namespace _21
 
         //BUTTONS
 
-        //Start
+        //Start Button
         private void buttonStart_Click(object sender, RoutedEventArgs e)
         {
             //Check if there is a wager
@@ -119,7 +119,7 @@ namespace _21
 
         }
 
-        //Hit
+        //Hit Button
         private void Hit_Click(object sender, RoutedEventArgs e)
         {
             //Give player another card
@@ -145,7 +145,7 @@ namespace _21
             }
         }
 
-        //Stand
+        //Stand Button
         private void buttonStand_Click(object sender, RoutedEventArgs e)
         {
             //Disable stand
@@ -165,7 +165,6 @@ namespace _21
             textBlock.IsEnabled = true;
 
         }
-
 
 
         //METHODS
@@ -479,11 +478,7 @@ namespace _21
             for (int i = 0; i < 1000000; i++)
             {
                 int slot1 = rnd.Next(0, 52);
-                int slot2 = slot1 - 1;
-                if (slot2 == -1)
-                {
-                    slot2 = 51;
-                }
+                int slot2 = rnd.Next(0, 52);
                 int number1 = deck[slot1];
                 int number2 = deck[slot2];
                 deck[slot1] = number2;
